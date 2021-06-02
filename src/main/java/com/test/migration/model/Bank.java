@@ -12,4 +12,16 @@ public class Bank {
 
     @OneToMany(mappedBy = "bank")
     private List<Account> accounts;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Account> getAccounts() {
+        return accounts;
+    }
 }
