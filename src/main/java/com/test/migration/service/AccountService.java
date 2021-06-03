@@ -1,15 +1,16 @@
 package com.test.migration.service;
 
 import com.test.migration.model.Account;
+import com.test.migration.model.TransferLog;
 import com.test.migration.repository.AccountRepository;
 import com.test.migration.request.TransferValueRequest;
+import com.test.migration.shared.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,7 +20,17 @@ public class AccountService {
     private static final String INSUFFICIENT_BALANCE_MSG = "Saldo insuficiente";
 
     @Autowired
+    private ModelMapper modelMapper;
+
+    @Autowired
+    private TransferLogService transferLogService;
+
+    @Autowired
     private AccountRepository accountRepository;
+
+    public Account create(Account account) {
+        return accountRepository.save(account);
+    }
 
     public Account findOne(Integer id) {
         return accountRepository
@@ -58,8 +69,20 @@ public class AccountService {
         );
     }
 
-    public void moneyTransfer(TransferValueRequest transferValueRequest) {
+    public void moneyTransfer(TransferLog transferLog) {
+        List<Account> accounts = accountRepository.findByNumberIn(
+                List.of(transferLog.getSenderAccount().getNumber(),
+                        transferLog.getReceiverAccount().getNumber())
+        );
 
+        if(accounts.contains(null))
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND,
+                    ACCOUNT_NOT_FOUND_MSG
+            );
 
+        // TODO: setar accounts recebidos, adicionar retorno
+
+        transferLogService.save(transferLog);
     }
 }

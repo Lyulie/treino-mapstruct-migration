@@ -1,18 +1,23 @@
 package com.test.migration.request;
 
+import com.test.migration.model.Account;
+
+import javax.validation.Valid;
 import java.math.BigDecimal;
 
 public class TransferValueRequest {
 
-    private Integer senderAccount;
-    private Integer receiverAccount;
+    @Valid
+    private AccountRequest senderAccount;
+    @Valid
+    private AccountRequest receiverAccount;
     private BigDecimal valueToTransfer;
 
-    public Integer getSenderAccount() {
+    public AccountRequest getSenderAccount() {
         return senderAccount;
     }
 
-    public Integer getReceiverAccount() {
+    public AccountRequest getReceiverAccount() {
         return receiverAccount;
     }
 
