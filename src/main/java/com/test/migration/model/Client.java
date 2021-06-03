@@ -8,7 +8,8 @@ import java.util.List;
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_seq")
+    @SequenceGenerator(name = "client_seq", initialValue = 3, allocationSize = 1)
     private Integer id;
     private String name;
     private String cpf;

@@ -13,6 +13,7 @@ public class Financing {
     @PrimaryKeyJoinColumn
     private Client client;
 
+    @OneToOne
     @PrimaryKeyJoinColumn
     private Property property;
 

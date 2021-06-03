@@ -12,8 +12,13 @@ public class Account {
     private Integer number;
     private BigDecimal balance;
 
+    @ManyToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private Client client;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private Bank bank;
 
     public Integer getId() {
         return id;
