@@ -1,9 +1,6 @@
 package com.test.migration.request;
 
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
 public class PropertyRequest {
@@ -15,11 +12,11 @@ public class PropertyRequest {
     )
     private String type;
 
-    @NotNull(message = "O campo não deve ser nulo!")
-    @Min(value = 1000L, message = "a")
+    @NotNull(message = "O valor não deve ser nulo!")
+    @Min(value = 1000L, message = "O valor deve ser de 1000 reais ou superior")
     private BigDecimal value;
 
-    @NotNull(message = "O campo não deve ser nulo!")
+    @NotBlank(message = "O código não deve ser nulo!")
     private String code;
 
     public Integer getId() {
