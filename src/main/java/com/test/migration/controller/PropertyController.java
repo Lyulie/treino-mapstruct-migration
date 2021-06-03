@@ -28,7 +28,6 @@ public class PropertyController {
     public ResponseEntity<Property> create(@Valid @RequestBody PropertyRequest dto) {
 
         Property property = modelMapper.propertyRequestToModel(dto);
-        System.out.println();
         propertyService.create(property);
         return ResponseEntity.status(HttpStatus.CREATED).body(property);
     }
