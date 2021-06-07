@@ -26,6 +26,12 @@ public class AccountService {
     private TransferLogService transferLogService;
 
     @Autowired
+    private BankService bankService;
+
+    @Autowired
+    private ClientService clientService;
+
+    @Autowired
     private AccountRepository accountRepository;
 
     public Account create(Account account) {

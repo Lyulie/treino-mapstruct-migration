@@ -46,7 +46,27 @@ public class Account {
         return client;
     }
 
+    public Bank getBank() {
+        return bank;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public void setBank(Bank bank) {
+        this.bank = bank;
     }
 }

@@ -32,7 +32,9 @@ public class AccountController {
     public ResponseEntity<AccountResponse> create(@Valid @RequestBody AccountRequest dto) {
 
         Account account = modelMapper.accountRequestToModel(dto);
-        accountService.create(account);
+        System.out.println(account.getClient().getCpf());
+        System.out.println(account.getBank().getCode());
+//        accountService.create(account);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }

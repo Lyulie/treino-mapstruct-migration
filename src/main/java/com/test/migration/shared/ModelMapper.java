@@ -12,7 +12,9 @@ import org.mapstruct.*;
 import javax.persistence.Embedded;
 import java.util.ArrayList;
 
-@Mapper(componentModel = "spring", imports = {Account.class, Financing.class, ArrayList.class})
+@Mapper(componentModel = "spring", imports = {
+        Account.class, Financing.class, Bank.class, Client.class, ArrayList.class
+})
 public interface ModelMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
@@ -41,6 +43,10 @@ public interface ModelMapper {
     TransferLogResponse transferLogToResponse(TransferLog transferLog);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    @Mappings({
+            @Mapping(target = "client", expression = "java(new Client(accountRequest.getClientCpf()))"),
+            @Mapping(target = "bank", expression = "java(new Bank(accountRequest.getBankCode()))")
+    })
     Account accountRequestToModel(AccountRequest accountRequest);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

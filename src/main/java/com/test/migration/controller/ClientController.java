@@ -32,10 +32,7 @@ public class ClientController {
         clientService.create(client);
 
         ClientResponse clientResponse = modelMapper.clientToResponse(client);
-        System.out.println(clientResponse.getId());
-        System.out.println(clientResponse.getName());
 
-        System.out.println(client.getCpf());
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(clientResponse);

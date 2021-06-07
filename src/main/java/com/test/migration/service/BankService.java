@@ -25,6 +25,14 @@ public class BankService {
                 ));
     }
 
+    public Bank findByCode(Integer code) {
+        return bankRepository
+                .findByCode(code)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, BANK_NOT_FOUND_MSG
+                ));
+    }
+
     public BigDecimal getTotalBalance(Integer id) {
         Bank bank = findOne(id);
         BigDecimal totalBalance = BigDecimal.ZERO;

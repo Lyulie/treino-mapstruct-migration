@@ -18,6 +18,22 @@ public class Client {
     @OneToMany(mappedBy = "client")
     private List<Financing> financings = new ArrayList<>();
 
+    @Deprecated
+    public Client() {
+    }
+
+    public Client(Integer id, String name, String cpf, BigDecimal salary, List<Financing> financings) {
+        this.id = id;
+        this.name = name;
+        this.cpf = cpf;
+        this.salary = salary;
+        this.financings = financings;
+    }
+
+    public Client(String cpf) {
+        this(null, null, cpf, null, null);
+    }
+
     public Integer getId() {
         return id;
     }
