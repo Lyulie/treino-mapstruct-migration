@@ -20,6 +20,16 @@ public class Account {
     @PrimaryKeyJoinColumn
     private Bank bank;
 
+    public Account() {}
+
+    public Account(Integer number) {
+        this.id = null;
+        this.number = number;
+        this.balance = null;
+        this.client = null;
+        this.bank = null;
+    }
+
     public Integer getId() {
         return id;
     }

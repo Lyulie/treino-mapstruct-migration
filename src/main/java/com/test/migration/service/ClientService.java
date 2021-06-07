@@ -17,6 +17,10 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
+    public Client create(Client client) {
+        return clientRepository.save(client);
+    }
+
     public Client findOne(Integer id) {
         return clientRepository
                 .findById(id)

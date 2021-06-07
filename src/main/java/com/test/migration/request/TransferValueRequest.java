@@ -7,18 +7,19 @@ import java.math.BigDecimal;
 
 public class TransferValueRequest {
 
-    @Valid
-    private AccountRequest senderAccount;
-    @Valid
-    private AccountRequest receiverAccount;
+
+    private Integer senderAccountNumber;
+
+    private Integer receiverAccountNumber;
+
     private BigDecimal valueToTransfer;
 
-    public AccountRequest getSenderAccount() {
-        return senderAccount;
+    public Integer getSenderAccountNumber() {
+        return senderAccountNumber;
     }
 
-    public AccountRequest getReceiverAccount() {
-        return receiverAccount;
+    public Integer getReceiverAccountNumber() {
+        return receiverAccountNumber;
     }
 
     public BigDecimal getValueToTransfer() {

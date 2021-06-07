@@ -15,11 +15,11 @@ public class TransferLog {
     private Integer id;
 
     @OneToOne
-    @PrimaryKeyJoinColumn
+    @JoinColumn(name = "sender_account_id", referencedColumnName = "id")
     private Account senderAccount;
 
     @OneToOne
-    @PrimaryKeyJoinColumn
+    @JoinColumn(name = "receiver_account_id", referencedColumnName = "id")
     private Account receiverAccount;
     private BigDecimal transferredValue;
     private final Timestamp timestamp = Timestamp.from(ZonedDateTime.now().toInstant());
@@ -42,5 +42,21 @@ public class TransferLog {
 
     public Timestamp getTimestamp() {
         return timestamp;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setSenderAccount(Account senderAccount) {
+        this.senderAccount = senderAccount;
+    }
+
+    public void setReceiverAccount(Account receiverAccount) {
+        this.receiverAccount = receiverAccount;
+    }
+
+    public void setTransferredValue(BigDecimal transferredValue) {
+        this.transferredValue = transferredValue;
     }
 }

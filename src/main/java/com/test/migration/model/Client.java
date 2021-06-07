@@ -2,6 +2,7 @@ package com.test.migration.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,7 +16,7 @@ public class Client {
     private String cpf;
     private BigDecimal salary;
     @OneToMany(mappedBy = "client")
-    private List<Financing> financings;
+    private List<Financing> financings = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -35,5 +36,25 @@ public class Client {
 
     public List<Financing> getFinancings() {
         return financings;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setSalary(BigDecimal salary) {
+        this.salary = salary;
+    }
+
+    public void setFinancings(List<Financing> financings) {
+        this.financings = financings;
     }
 }
