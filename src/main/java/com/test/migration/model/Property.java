@@ -13,7 +13,21 @@ public class Property {
     private Integer id;
     private String type;
     private BigDecimal value;
-    private String code;
+    private Integer code;
+
+    @Deprecated
+    public Property(){}
+
+    public Property(Integer id, String type, BigDecimal value, Integer code) {
+        this.id = id;
+        this.type = type;
+        this.value = value;
+        this.code = code;
+    }
+
+    public Property(Integer code) {
+        this(null, null, null, code);
+    }
 
     public Integer getId() {
         return id;
@@ -27,7 +41,7 @@ public class Property {
         return value;
     }
 
-    public String getCode() {
+    public Integer getCode() {
         return code;
     }
 
@@ -39,7 +53,7 @@ public class Property {
         this.value = value;
     }
 
-    public void setCode(String code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 }

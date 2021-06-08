@@ -1,10 +1,7 @@
 package com.test.migration.shared;
 
 import com.test.migration.model.*;
-import com.test.migration.request.AccountRequest;
-import com.test.migration.request.ClientRequest;
-import com.test.migration.request.PropertyRequest;
-import com.test.migration.request.TransferValueRequest;
+import com.test.migration.request.*;
 import com.test.migration.response.ClientResponse;
 import com.test.migration.response.TransferLogResponse;
 import org.mapstruct.*;
@@ -58,4 +55,21 @@ public interface ModelMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     ClientResponse clientToResponse(Client client);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    @Mappings({
+            @Mapping(
+                    target = "client",
+                    expression = "java(new Client(financingRequest.getClientCpf()))"
+            ),
+            @Mapping(
+                    target = "bank",
+                    expression = "java(new Bank(financingRequest.getBankCode()))"
+            ),
+            @Mapping(
+                    target = "property",
+                    expression = "java(new Property(financingRequest.getPropertyCode()))"
+            )
+    })
+    Financing financingRequestToModel(FinancingRequest financingRequest);
 }

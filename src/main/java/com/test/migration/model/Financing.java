@@ -47,6 +47,22 @@ public class Financing {
         return contributionsAmount;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public void setProperty(Property property) {
+        this.property = property;
+    }
+
+    public void setBank(Bank bank) {
+        this.bank = bank;
+    }
+
     public void setFinancingValue(BigDecimal financingValue) {
         this.financingValue = financingValue;
     }

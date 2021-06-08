@@ -6,8 +6,8 @@ import java.util.List;
 
 public class AppException extends Exception {
 
-    private List<String> reasons;
-    private HttpStatus status;
+    private final List<String> reasons;
+    private final HttpStatus status;
 
     public AppException(List<String> reasons, HttpStatus status) {
         super("Requisição inválida");

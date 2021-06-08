@@ -29,7 +29,7 @@ public class PropertyService {
                 ));
     }
 
-    private Property findByCode(String code) {
+    private Property findByCode(Integer code) {
         return propertyRepository.findByCode(code);
     }
 

@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface PropertyRepository extends JpaRepository<Property, Integer> {
 
-    Property findByCode(String code);
+    Property findByCode(Integer code);
 }
