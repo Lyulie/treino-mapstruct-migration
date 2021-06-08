@@ -30,11 +30,7 @@ public class ClientService {
     }
 
     public Client findByCpf(String cpf) {
-        return clientRepository
-                .findByCpf(cpf)
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, CLIENT_NOT_FOUND_MSG
-                ));
+        return clientRepository.findByCpf(cpf);
     }
 
     public BigDecimal getTotalFinancings(Integer id) {

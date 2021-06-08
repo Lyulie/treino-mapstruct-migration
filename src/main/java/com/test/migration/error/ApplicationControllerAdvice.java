@@ -1,5 +1,6 @@
 package com.test.migration.error;
 
+import com.test.migration.exception.AppException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,5 +53,14 @@ public class ApplicationControllerAdvice {
             .errors(List.of(MALFORMED_JSON_MSG));
 
         return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(errorDetails);
+    }
+
+    @ExceptionHandler(AppException.class)
+    public ResponseEntity<?> handleResourceException(AppException appException) {
+        ErrorDetails errorDetails = ErrorDetails.newBuilder()
+                .status(appException.getStatus().value())
+                .errors(appException.getReasons());
+
+        return ResponseEntity.status(appException.getStatus()).body(errorDetails);
     }
 }

@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface BankRepository extends JpaRepository<Bank, Integer> {
 
-    Optional<Bank> findByCode(Integer code);
+    Bank findByCode(Integer code);
 }

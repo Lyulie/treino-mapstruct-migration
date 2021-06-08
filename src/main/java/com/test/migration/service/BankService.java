@@ -26,11 +26,7 @@ public class BankService {
     }
 
     public Bank findByCode(Integer code) {
-        return bankRepository
-                .findByCode(code)
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, BANK_NOT_FOUND_MSG
-                ));
+        return bankRepository.findByCode(code);
     }
 
     public BigDecimal getTotalBalance(Integer id) {

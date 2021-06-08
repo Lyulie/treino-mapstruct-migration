@@ -1,5 +1,6 @@
 package com.test.migration.controller;
 
+import com.test.migration.exception.AppException;
 import com.test.migration.model.Account;
 import com.test.migration.model.TransferLog;
 import com.test.migration.request.AccountRequest;
@@ -29,12 +30,10 @@ public class AccountController {
     private AccountService accountService;
 
     @PostMapping
-    public ResponseEntity<AccountResponse> create(@Valid @RequestBody AccountRequest dto) {
+    public ResponseEntity<AccountResponse> create(@Valid @RequestBody AccountRequest dto) throws AppException {
 
         Account account = modelMapper.accountRequestToModel(dto);
-        System.out.println(account.getClient().getCpf());
-        System.out.println(account.getBank().getCode());
-//        accountService.create(account);
+        accountService.create(account);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }
