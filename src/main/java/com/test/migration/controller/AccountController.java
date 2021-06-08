@@ -34,8 +34,9 @@ public class AccountController {
 
         Account account = modelMapper.accountRequestToModel(dto);
         accountService.create(account);
+        AccountResponse response = modelMapper.accountToResponse(account);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(null);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PostMapping("transfer")

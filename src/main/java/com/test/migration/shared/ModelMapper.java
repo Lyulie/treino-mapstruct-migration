@@ -2,11 +2,11 @@ package com.test.migration.shared;
 
 import com.test.migration.model.*;
 import com.test.migration.request.*;
+import com.test.migration.response.AccountResponse;
 import com.test.migration.response.ClientResponse;
 import com.test.migration.response.TransferLogResponse;
 import org.mapstruct.*;
 
-import javax.persistence.Embedded;
 import java.util.ArrayList;
 
 @Mapper(componentModel = "spring", imports = {
@@ -48,9 +48,13 @@ public interface ModelMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mappings({
-            @Mapping(source = "clientRequest.name", target = "name"),
-            @Mapping(target = "financings", defaultExpression = "java(new ArrayList<Financing>())")
+            @Mapping(target = "clientName", expression = "java(account.getClient().getName())"),
+            @Mapping(target = "bankCode", expression = "java(account.getBank().getCode())")
     })
+    AccountResponse accountToResponse(Account account);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    @Mapping(target = "financings", defaultExpression = "java(new ArrayList<Financing>())")
     Client clientRequestToModel(ClientRequest clientRequest);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
