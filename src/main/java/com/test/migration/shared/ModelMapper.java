@@ -76,4 +76,8 @@ public interface ModelMapper {
             )
     })
     Financing financingRequestToModel(FinancingRequest financingRequest);
+
+    @Mapping(target = "accounts", defaultExpression = "java(new ArrayList<Account>())")
+    @Mapping(target = "id", ignore = true)
+    Bank bankRequestToModel(BankRequest bankRequest);
 }

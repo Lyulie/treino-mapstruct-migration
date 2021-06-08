@@ -8,11 +8,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class BankService {
 
     private static final String BANK_NOT_FOUND_MSG = "Banco não encontrado";
+    private static final String BANK_ALREADY_REGISTERED_MSG = "Banco com este código já cadastrado";
 
     @Autowired
     private BankRepository bankRepository;
@@ -34,5 +36,16 @@ public class BankService {
         BigDecimal totalBalance = BigDecimal.ZERO;
         bank.getAccounts().forEach(acc -> totalBalance.add(acc.getBalance()));
         return totalBalance;
+    }
+
+    public Bank create(Bank bank) {
+        if(bankRepository.findByCode(bank.getCode()) != null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, BANK_ALREADY_REGISTERED_MSG);
+
+        return bankRepository.save(bank);
+    }
+
+    public List<Bank> findAll() {
+        return bankRepository.findAll();
     }
 }

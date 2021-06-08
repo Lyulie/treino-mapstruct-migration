@@ -1,5 +1,7 @@
 package com.test.migration.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -16,6 +18,7 @@ public class Account {
     @PrimaryKeyJoinColumn
     private Client client;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private Bank bank;

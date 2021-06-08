@@ -44,4 +44,20 @@ public class Bank {
     public List<Account> getAccounts() {
         return accounts;
     }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
 }
